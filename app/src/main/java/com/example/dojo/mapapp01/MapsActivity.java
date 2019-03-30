@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -51,6 +52,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.797153, 140.777024)).title("らーめん工房繁"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.796355, 140.773919)).title("麺屋 城"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.795802, 140.768972)).title("中華そばさとう"));
+
+        // 追加情報付きマーカー
+        MarkerOptions opt = new MarkerOptions();
+        opt.position(new LatLng(40.790395, 140.773397));
+        opt.title("総合学校教育センターの近く");
+        opt.snippet("昔ここで知り合いが自転車でこけて手首を骨折しましたね。");
+        opt.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+        Marker m1 = mMap.addMarker(opt);
+        m1.showInfoWindow();
 
         // 視点を移動 + ズーム(2-21)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.784415, 140.780523), 13));
