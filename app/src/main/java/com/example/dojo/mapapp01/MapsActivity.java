@@ -44,11 +44,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // マップタイプ等の設定
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.setTrafficEnabled(true);
-        mMap.setBuildingsEnabled(true);
-
         // マーカーを追加
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.794476, 140.780089)).title("つじい"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.798399, 140.780915)).title("麺山"));
@@ -58,59 +53,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.797153, 140.777024)).title("らーめん工房繁"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.796355, 140.773919)).title("麺屋 城"));
         mMap.addMarker(new MarkerOptions().position(new LatLng(40.795802, 140.768972)).title("中華そばさとう"));
-
-        // 追加情報付きマーカー
-        MarkerOptions opt = new MarkerOptions();
-        opt.position(new LatLng(40.790395, 140.773397));
-        opt.title("総合学校教育センターの近く");
-        opt.snippet("昔ここで知り合いが自転車でこけて手首を骨折しましたね。");
-        opt.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-        Marker m1 = mMap.addMarker(opt);
-        m1.showInfoWindow();
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40.794836, 140.757593)).title("麺屋とろも"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40.791076, 140.760690)).title("ラァメン ぼーんず"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40.791795, 140.760784)).title("たんめん亭 妙見店"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40.788426, 140.759775)).title("らーめんはちもり"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(40.787541, 140.784817)).title("ラーメンショップ幸畑店"));
 
         // 視点を移動 + ズーム(2-21)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.784415, 140.780523), 13));
-
-        // 現在地を表示
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION
-            }, 1);
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
-
-        // ロングクリック
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .title("ここ")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                );
-            }
-        });
-
-//        // クリック
-//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//                mMap.addMarker(new MarkerOptions()
-//                        .position(latLng)
-//                        .title("ここ")
-//                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-//                );
-//            }
-//        });
-
-        // InfoWindowのタップを検出
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                Toast.makeText(MapsActivity.this, marker.getTitle() + "を押したね", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.784415, 140.780523), 14));
     }
 }
